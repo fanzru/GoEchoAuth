@@ -23,7 +23,8 @@ type Tokens struct {
 func ConnectionDatabase() (*gorm.DB, error) {
 	fmt.Println("Connecting to Database ....")
 	//db, err := sql.Open("mysql", "root:fanzru@tcp(103.55.38.98:1000)/petcare?charset=utf8mb4&parseTime=True")
-	dsn := "root:fanzru@tcp(103.55.38.98:1000)/auth"
+	dsn := "affan:Affan!080701@tcp(103.55.38.98:3306)/auth"
+	// dsn := "user:fanzru@tcp(103.55.38.98:3306)/auth"
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	// if there is an error opening the connection, handle it
 	if err != nil {
