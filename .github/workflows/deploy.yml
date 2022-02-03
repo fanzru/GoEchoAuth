@@ -1,0 +1,24 @@
+# name: Deploy
+
+# on:
+#   push:
+#     branches: [main]
+
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
+#     env:
+#       FOLDER_NAME: /Users/fanzru/backend/GoEchoAuth/scripts
+#     steps:
+#       - uses: actions/checkout@v2
+#       - name: Preparing to deploy to production 🚀🤘
+#         uses: appleboy/ssh-action@master
+#         with:
+#           host: ${{ secrets.HOST }}
+#           USERNAME: ${{ secrets.USERNAME }}
+#           PORT: ${{ secrets.PORT }}
+#           PASSWORD: ${{ secrets.PASSWORD }}
+#           script: |
+#             cd ~/backend/GoEchoAuth/scripts
+#             chmod +x deploy.sh
+#             ./deploy.sh

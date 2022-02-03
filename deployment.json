@@ -1,0 +1,8 @@
+{
+    "apps": [
+      {
+        "name": "backend GoEchoAuth",
+        "script": "go run server.go"
+      }
+    ]
+}
