@@ -9,6 +9,7 @@ func Init() *echo.Echo {
 	e := echo.New()
 
 	//routes
+	e = RouteUser(e)
 
 	// middleware buat models
 	e.Debug = true

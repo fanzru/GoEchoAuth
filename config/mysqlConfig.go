@@ -1,24 +1,12 @@
 package config
 
 import (
+	"GoEchoAuth/models"
 	"fmt"
+
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
-	"time"
 )
-
-type Users struct {
-	UUID      string `gorm:"primaryKey"`
-	Email     string `gorm:"type:string;"`
-	Password  string `gorm:"type:string;"`
-	CreatedAt time.Time
-	UpdatedAt time.Time
-}
-type Tokens struct {
-	UUID         string `gorm:"primaryKey"`
-	IdUser       string `gorm:"foreignkey:Users;references:UUID"`
-	RefreshToken string `gorm:"type:string;"`
-}
 
 func ConnectionDatabase() (*gorm.DB, error) {
 	fmt.Println("Connecting to Database ....")
@@ -31,19 +19,27 @@ func ConnectionDatabase() (*gorm.DB, error) {
 		return nil, err
 	}
 
+	fmt.Println("Database Connected")
+	return db, nil
+}
+
+func MigrationDB() (*gorm.DB, error) {
 	// migrate to database
-	err = db.AutoMigrate(&Users{})
+	db, err := ConnectionDatabase()
 	if err != nil {
-		fmt.Println("Migration failed")
-		return nil, err
-	}
-	// migrate to database
-	err = db.AutoMigrate(&Tokens{})
-	if err != nil {
-		fmt.Println("Migration failed")
 		return nil, err
 	}
 
-	fmt.Println("Database Connected")
+	err = db.AutoMigrate(&models.Users{})
+	if err != nil {
+		fmt.Println("Migration failed")
+		return nil, err
+	}
+	// migrate to database
+	err = db.AutoMigrate(&models.Tokens{})
+	if err != nil {
+		fmt.Println("Migration failed")
+		return nil, err
+	}
 	return db, nil
 }

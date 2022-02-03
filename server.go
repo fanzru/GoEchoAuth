@@ -3,8 +3,9 @@ package main
 import (
 	"GoEchoAuth/config"
 	"GoEchoAuth/routes"
-	"github.com/labstack/echo/v4"
 	"net/http"
+
+	"github.com/labstack/echo/v4"
 )
 
 type Connected struct {
@@ -14,7 +15,7 @@ type Connected struct {
 }
 
 func main() {
-	_, err := config.ConnectionDatabase()
+	_, err := config.MigrationDB()
 	if err != nil {
 		panic(err.Error())
 	}
